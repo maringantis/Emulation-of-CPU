@@ -1,0 +1,5 @@
+bne $a1, $a2, recur
+mul $t4, $a1, 4
+add $a0, $a0, $t4
+li $v1, $a0 
+jr $ra

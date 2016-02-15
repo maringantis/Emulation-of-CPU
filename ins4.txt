@@ -1,0 +1,34 @@
+bne $a1, $a2, recur
+mul $t4, $a1, 4
+add $a0, $a0, $t4
+li $v1, $a0 
+jr $ra
+recur:
+add $t1, $t1, -12 
+sw $r8, $t1
+add $t0, $a1, $a2
+div $t0, $t0, 2
+min1:
+sw $a2, $sp
+add $t3, $t0, 1
+sw $t3, 8($sp)
+li $a2,$t0
+jal min
+li $t1, $v1
+min2:
+lw $a2, 4($sp) 
+lw $a1, 8($sp) 
+jal min 
+li $t2, $v1
+confirm:
+bgt $t1, $t2, return Mid2
+li $v1, $t1
+j minFinal
+returnMid2:
+li $v1, $t2
+minFinal:
+lw $ra, 0($sp)
+add $sp, $sp, 12
+jr $ra
+
+
